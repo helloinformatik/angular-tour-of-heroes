@@ -23,7 +23,7 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
-        tap(_ => this.log('fetched heroes')),
+        tap(_ => this.log('fetched Sprachen')),
         catchError(this.handleError<Hero[]>('getHeroes', []))
       );
   }
@@ -45,7 +45,7 @@ export class HeroService {
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
-      tap(_ => this.log(`fetched hero id=${id}`)),
+      tap(_ => this.log(`fetched Sprache id=${id}`)),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
     );
   }
@@ -56,16 +56,16 @@ export class HeroService {
     }
     return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
       tap(x => x.length ?
-        this.log(`found heroes matching "${term}"`) :
-        this.log(`no heroes matching "${term}"`)),
-      catchError(this.handleError<Hero[]>('searchHeroes', []))
+        this.log(`found Sprachen matching "${term}"`) :
+        this.log(`no Sparchen matching "${term}"`)),
+      catchError(this.handleError<Hero[]>('searchSprachen', []))
     );
   }
 
  addHero(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
-      catchError(this.handleError<Hero>('addHero'))
+      tap((newHero: Hero) => this.log(`added Sprache id=${newHero.id}`)),
+      catchError(this.handleError<Hero>('addSprache'))
     );
   }
 
@@ -73,15 +73,15 @@ export class HeroService {
     const url = `${this.heroesUrl}/${id}`;
 
     return this.http.delete<Hero>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
-      catchError(this.handleError<Hero>('deleteHero'))
+      tap(_ => this.log(`deleted Sprache id=${id}`)),
+      catchError(this.handleError<Hero>('deleteSprache'))
     );
  }
 
  updateHero(hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
-      catchError(this.handleError<any>('updateHero'))
+      tap(_ => this.log(`updated Sprache id=${hero.id}`)),
+      catchError(this.handleError<any>('updateSprache'))
     );
  }
 
@@ -94,6 +94,6 @@ export class HeroService {
  }
 
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messageService.add(`SprachenService: ${message}`);
   }
 }
